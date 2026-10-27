@@ -5,6 +5,7 @@ import {
   initializeAppCheck,
   ReCaptchaEnterpriseProvider,
 } from "firebase/app-check";
+import { getToken } from "firebase/app-check";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCoAjNpWDp29erxrp4QmefARzlyDz0p0T0",
@@ -28,3 +29,12 @@ const appCheck = initializeAppCheck(app, {
 
 export const db = getFirestore(app);
 export const auth = getAuth(app);
+
+// TESTE TEMPORÁRIO DO APP CHECK
+getToken(appCheck, true)
+  .then(() => {
+    console.log("✅ APP CHECK: Token gerado com sucesso!");
+  })
+  .catch((erro) => {
+    console.error("❌ APP CHECK: Falha na verificação:", erro.code, erro.message);
+  });
