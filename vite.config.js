@@ -1,7 +1,11 @@
-import react from '@vitejs/plugin-react'
-import { defineConfig } from 'vite'
 
-// https://vite.dev/config/
-export default defineConfig({
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+
+export default defineConfig(({ mode }) => ({
   plugins: [react()],
-})
+  base:
+    mode === "github"
+      ? "/show-do-milhao-geracao-z/"
+      : "/",
+}));
