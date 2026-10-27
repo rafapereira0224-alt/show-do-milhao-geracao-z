@@ -1,0 +1,1425 @@
+/* =========================================
+   SHOW DO MILHÃO — GERAÇÃO Z
+   CSS COMPLETO
+========================================= */
+
+/* RESET DO JOGO E DO VITE */
+
+html {
+  min-height: 100%;
+  background: #030723;
+}
+
+body {
+  margin: 0 !important;
+  min-width: 320px;
+  min-height: 100vh;
+  display: block !important;
+  background: #030723 !important;
+}
+
+#root {
+  width: 100%;
+  max-width: none !important;
+  min-height: 100vh;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: initial !important;
+}
+
+.milhao,
+.milhao * {
+  box-sizing: border-box;
+}
+
+.milhao {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  min-height: 100vh;
+  padding: 24px 20px 50px;
+  overflow: hidden;
+
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    #253ca8 0%,
+    #101b69 30%,
+    #071044 60%,
+    #02051e 100%
+  );
+}
+
+/* PARTÍCULAS DECORATIVAS */
+
+.milhao__particulas {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  opacity: 0.55;
+
+  background-image:
+    radial-gradient(circle, #7493ff 2px, transparent 4px),
+    radial-gradient(circle, #3657dc 3px, transparent 5px);
+
+  background-size:
+    125px 150px,
+    210px 190px;
+
+  background-position:
+    10px 30px,
+    60px 90px;
+}
+
+/* PAINEL PRINCIPAL */
+
+.milhao__painel {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+}
+
+/* CABEÇALHO */
+
+.milhao__topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.milhao__icone {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+
+  width: 52px;
+  height: 52px;
+  padding: 0;
+
+  border: 2px solid #ffffff;
+  border-radius: 14px;
+
+  color: #ffffff;
+  font-size: 27px;
+  font-weight: 900;
+  line-height: 1;
+
+  background: linear-gradient(180deg, #3260b3, #0d2169 50%, #02072d);
+
+  box-shadow:
+    inset 0 3px 7px #a4d9ff,
+    0 4px 8px #0008;
+
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.milhao__icone:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.2);
+}
+
+/* LOGO */
+
+.milhao__marca {
+  flex: 1;
+  text-align: center;
+
+  color: #ffffff;
+  font-size: clamp(19px, 3vw, 29px);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: 1px;
+
+  text-shadow:
+    0 2px 3px #000a,
+    0 0 12px #436bff;
+}
+
+.milhao__marca strong {
+  color: #ffe16a;
+}
+
+.milhao__marca small {
+  display: block;
+  margin-top: 7px;
+
+  color: #c4d9ff;
+  font-size: clamp(9px, 1.4vw, 12px);
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+/* PLACAR */
+
+.milhao__placar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin: 28px 0 18px;
+}
+
+/* CRONÔMETRO */
+
+.milhao__relogio {
+  display: grid;
+  place-items: center;
+
+  width: 95px;
+  height: 95px;
+
+  border: 6px solid #24f64b;
+  border-radius: 50%;
+
+  color: #ffffff;
+  font-size: 39px;
+  font-weight: 900;
+
+  background: radial-gradient(circle at 35% 20%, #263a9e, #071249 65%, #020521);
+
+  box-shadow:
+    0 0 18px #22ff4b99,
+    0 0 35px #16ff3c35,
+    inset 0 0 10px #0009;
+
+  font-variant-numeric: tabular-nums;
+}
+
+/* PRÊMIO */
+
+.milhao__valor {
+  position: relative;
+  z-index: 1;
+
+  width: min(100%, 315px);
+  margin-top: -5px;
+  padding: 12px 25px;
+
+  border: 3px solid #fff0ae;
+  border-radius: 100px;
+
+  text-align: center;
+
+  color: #261300;
+  font-size: 28px;
+  font-weight: 900;
+
+  background: linear-gradient(
+    180deg,
+    #fff5c4 0%,
+    #ffd85b 35%,
+    #ffa40b 70%,
+    #e58100 100%
+  );
+
+  box-shadow:
+    inset 0 3px 0 #fffbea,
+    0 6px 13px #0009,
+    0 0 20px #ffc33144;
+}
+
+.milhao__valor span {
+  display: block;
+  margin-top: 4px;
+
+  color: #422500;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+/* NÍVEL DE DIFICULDADE */
+
+.milhao__etapa {
+  margin-top: 18px;
+
+  color: #e3ebff;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 4px;
+
+  text-align: center;
+  text-shadow: 0 0 8px #739aff;
+}
+
+/* PROGRESSO */
+
+.milhao__trilho {
+  width: 100%;
+  height: 10px;
+
+  overflow: hidden;
+
+  border: 1px solid #769ce5;
+  border-radius: 30px;
+
+  background: #030b35;
+
+  box-shadow:
+    inset 0 2px 5px #0009,
+    0 2px 5px #0007;
+}
+
+.milhao__trilho span {
+  display: block;
+  height: 100%;
+
+  background: linear-gradient(90deg, #ff9500, #ffd24f, #fff3aa);
+
+  box-shadow: 0 0 12px #ffd65d;
+
+  transition: width 0.3s ease;
+}
+
+/* ÁREA DA PERGUNTA */
+
+.milhao__pergunta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 180px;
+  padding: 28px 15px;
+
+  text-align: center;
+}
+
+.milhao__pergunta span {
+  color: #a9cfff !important;
+
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 4px;
+
+  text-transform: uppercase;
+}
+
+.milhao__pergunta h2 {
+  width: 100%;
+  max-width: 790px;
+  margin: 18px auto 0;
+
+  color: #ffffff !important;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 900;
+  line-height: 1.35;
+
+  overflow-wrap: break-word;
+
+  text-shadow:
+    0 2px 4px #000d,
+    0 0 15px #0007;
+}
+
+/* ÁREA INFERIOR */
+
+.milhao__base {
+  width: 100%;
+  padding-top: 19px;
+
+  border-top: 3px solid #34d8f4;
+
+  box-shadow: 0 -8px 16px -16px #51f0ff;
+}
+
+/* BOTÕES DE AJUDA */
+
+.milhao__ajudas {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  width: 100%;
+  max-width: 580px;
+
+  gap: 14px;
+  margin: 0 auto 26px;
+}
+
+.milhao__ajudas button {
+  display: grid;
+  place-items: center;
+
+  width: 100%;
+  min-width: 0;
+  height: 55px;
+  padding: 0;
+
+  border: 2px solid #ffffff;
+  border-radius: 100px;
+
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 25px;
+  font-weight: 900;
+  line-height: 1;
+
+  background: linear-gradient(
+    180deg,
+    #3154ab 0%,
+    #142c82 40%,
+    #06134c 75%,
+    #020625 100%
+  );
+
+  box-shadow:
+    inset 0 3px 6px #a8dfff99,
+    0 5px 6px #0009;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.milhao__ajudas button:not(:disabled):hover {
+  transform: translateY(-3px);
+  filter: brightness(1.25);
+  border-color: #ffe184;
+}
+
+.milhao button:focus-visible {
+  outline: 3px solid #ffe184;
+  outline-offset: 4px;
+}
+
+.milhao button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ALTERNATIVAS */
+
+.milhao__opcoes {
+  display: grid;
+  gap: 15px;
+}
+
+.milhao__opcao {
+  display: block;
+
+  width: 100%;
+  min-height: 67px;
+  padding: 16px 23px;
+
+  border: 2px solid #ccefff;
+  border-radius: 32px;
+
+  color: #ffffff !important;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(16px, 2vw, 19px);
+  font-weight: 750;
+  line-height: 1.45;
+  text-align: left;
+
+  overflow-wrap: anywhere;
+
+  background: linear-gradient(
+    180deg,
+    #274ba8 0%,
+    #152e80 30%,
+    #08194f 65%,
+    #030a30 100%
+  );
+
+  box-shadow:
+    inset 0 3px 5px #91cbff88,
+    0 5px 9px #0009;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.milhao__opcao b {
+  color: #ffdc75 !important;
+  font-weight: 900;
+}
+
+.milhao__opcao:not(:disabled):hover {
+  transform: translateY(-2px);
+  filter: brightness(1.2);
+  border-color: #ffe083;
+}
+
+/* RESPOSTA CORRETA */
+
+.milhao__opcao--certa,
+.milhao__opcao--certa:disabled {
+  color: #ffffff !important;
+  opacity: 1 !important;
+
+  border-color: #a7ffd0 !important;
+
+  background: linear-gradient(180deg, #29de83, #087c49) !important;
+
+  box-shadow:
+    inset 0 2px 5px #ffffff44,
+    0 0 16px #24e78455 !important;
+}
+
+/* RESPOSTA ERRADA */
+
+.milhao__opcao--errada,
+.milhao__opcao--errada:disabled {
+  color: #ffffff !important;
+  opacity: 1 !important;
+
+  border-color: #ffb8bd !important;
+
+  background: linear-gradient(180deg, #ef5f72, #991b38) !important;
+}
+
+/* FEEDBACK */
+
+.milhao__feedback {
+  margin-top: 25px;
+  padding: 24px 20px;
+
+  border: 2px solid #ffdb7c;
+  border-radius: 22px;
+
+  text-align: center;
+  color: #ffffff;
+
+  background: linear-gradient(180deg, #172976, #071141);
+
+  box-shadow:
+    0 8px 20px #0009,
+    0 0 15px #ffce4e22;
+}
+
+.milhao__feedback strong {
+  color: #ffe48e;
+  font-size: 23px;
+}
+
+.milhao__feedback p {
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.milhao__feedback button {
+  min-height: 48px;
+  padding: 13px 28px;
+
+  border: 0;
+  border-radius: 100px;
+
+  color: #2c1900;
+  font-size: 16px;
+  font-weight: 900;
+
+  background: linear-gradient(#ffefaa, #ffaf19);
+
+  box-shadow: 0 4px 8px #0008;
+
+  cursor: pointer;
+}
+
+/* BOTÃO PARAR */
+
+.milhao__parar {
+  display: block;
+
+  margin: 27px auto 0;
+  padding: 13px 30px;
+
+  border: 1px solid #b7caff;
+  border-radius: 100px;
+
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+
+  background: linear-gradient(180deg, #314998, #101e5a);
+
+  cursor: pointer;
+}
+
+.milhao__parar:hover {
+  filter: brightness(1.2);
+}
+
+/* DICAS */
+
+.milhao__dica,
+.milhao__votos {
+  margin-bottom: 20px;
+  padding: 18px;
+
+  border: 1px solid #a7d7ff;
+  border-radius: 18px;
+
+  color: #ffffff;
+  font-size: 15px;
+  line-height: 1.55;
+
+  background: linear-gradient(180deg, #203c91, #101d5d);
+
+  box-shadow: 0 5px 12px #0006;
+}
+
+.milhao__votos {
+  text-align: center;
+}
+
+/* GRÁFICO DA PLATEIA */
+
+.milhao__barras {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+
+  margin-top: 18px;
+}
+
+.milhao__barras > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.milhao__barras > div > div {
+  display: flex;
+  align-items: flex-end;
+
+  width: 100%;
+  max-width: 55px;
+  height: 95px;
+
+  overflow: hidden;
+
+  border: 1px solid #435eae;
+  border-radius: 7px;
+
+  background: #030a35;
+}
+
+.milhao__barras i {
+  display: block;
+  width: 100%;
+
+  background: linear-gradient(#ffeb90, #f5ad20, #e58b00);
+}
+
+/* =========================================
+   RESPONSIVIDADE — TABLET
+========================================= */
+
+@media (max-width: 768px) {
+  .milhao {
+    padding: 18px 14px 38px;
+  }
+
+  .milhao__painel {
+    max-width: 620px;
+  }
+
+  .milhao__placar {
+    margin-top: 22px;
+  }
+
+  .milhao__pergunta {
+    min-height: 175px;
+  }
+
+  .milhao__opcao {
+    font-size: 16px;
+    min-height: 60px;
+  }
+}
+
+/* =========================================
+   RESPONSIVIDADE — CELULAR
+========================================= */
+
+@media (max-width: 480px) {
+  .milhao {
+    padding: 12px 10px 32px;
+  }
+
+  .milhao__topo {
+    gap: 8px;
+  }
+
+  .milhao__icone {
+    width: 42px;
+    height: 42px;
+    font-size: 22px;
+    border-radius: 12px;
+  }
+
+  .milhao__marca {
+    font-size: clamp(14px, 4.2vw, 20px);
+    letter-spacing: 0.2px;
+  }
+
+  .milhao__marca small {
+    margin-top: 5px;
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+
+  .milhao__placar {
+    margin: 19px 0 14px;
+  }
+
+  .milhao__relogio {
+    width: 68px;
+    height: 68px;
+    border-width: 5px;
+    font-size: 28px;
+  }
+
+  .milhao__valor {
+    width: min(100%, 255px);
+    padding: 9px 18px;
+    font-size: 23px;
+  }
+
+  .milhao__valor span {
+    font-size: 11px;
+  }
+
+  .milhao__etapa {
+    margin-top: 12px;
+    font-size: 11px;
+    letter-spacing: 3px;
+  }
+
+  .milhao__trilho {
+    height: 8px;
+  }
+
+  .milhao__pergunta {
+    min-height: 165px;
+    padding: 22px 8px;
+  }
+
+  .milhao__pergunta span {
+    font-size: 11px;
+    letter-spacing: 3px;
+  }
+
+  .milhao__pergunta h2 {
+    margin-top: 14px;
+    font-size: clamp(19px, 5.2vw, 23px);
+    line-height: 1.35;
+  }
+
+  .milhao__base {
+    padding-top: 13px;
+  }
+
+  .milhao__ajudas {
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .milhao__ajudas button {
+    height: 46px;
+    font-size: 21px;
+  }
+
+  .milhao__opcoes {
+    gap: 11px;
+  }
+
+  .milhao__opcao {
+    min-height: 55px;
+    padding: 12px 15px;
+
+    font-size: 14px;
+    line-height: 1.4;
+
+    border-radius: 25px;
+  }
+
+  .milhao__feedback {
+    padding: 17px 13px;
+  }
+
+  .milhao__feedback strong {
+    font-size: 20px;
+  }
+
+  .milhao__feedback p {
+    font-size: 14px;
+  }
+
+  .milhao__dica,
+  .milhao__votos {
+    padding: 13px;
+    font-size: 14px;
+  }
+}
+
+/* TELAS MUITO PEQUENAS */
+
+@media (max-width: 350px) {
+  .milhao__marca {
+    font-size: 13px;
+  }
+
+  .milhao__ajudas {
+    gap: 5px;
+  }
+
+  .milhao__ajudas button {
+    height: 41px;
+    font-size: 19px;
+  }
+
+  .milhao__opcao {
+    font-size: 13px;
+    padding: 10px 12px;
+  }
+}
+
+/* ACESSIBILIDADE */
+
+@media (prefers-reduced-motion: reduce) {
+  .milhao *,
+  .milhao *::before,
+  .milhao *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* =========================================
+   SHOW DO MILHÃO — TELA INICIAL
+========================================= */
+
+.milhao--menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 35px 15px;
+}
+
+.milhao__menu {
+  width: 100%;
+  max-width: 560px;
+  margin: auto;
+  text-align: center;
+  animation: menuEntrada 0.5s ease-out;
+}
+
+@keyframes menuEntrada {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.milhao__menu-topo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.milhao__edicao {
+  padding: 7px 19px;
+  border: 1px solid #ffd76c;
+  border-radius: 30px;
+  color: #ffdf7c;
+  background: #152566;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 3px;
+}
+
+.milhao__trofeu {
+  margin: 18px 0 8px;
+  font-size: clamp(65px, 12vw, 95px);
+  filter: drop-shadow(0 0 20px #ffcc4f70);
+  animation: trofeuFlutuar 3s ease-in-out infinite;
+}
+
+@keyframes trofeuFlutuar {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+.milhao__titulo-inicial {
+  display: flex;
+  flex-direction: column;
+  margin: 4px 0 0;
+  color: #ffffff;
+  font-size: clamp(38px, 9vw, 64px);
+  font-weight: 950;
+  line-height: 1.05;
+  letter-spacing: 1px;
+  text-shadow: 0 4px 8px #0009;
+}
+
+.milhao__titulo-inicial span {
+  color: #ffd65c;
+  font-size: 1.2em;
+  text-shadow:
+    0 4px 5px #0009,
+    0 0 25px #ffbf3040;
+}
+
+.milhao__subtitulo {
+  margin: 15px 0 27px;
+  color: #c4daff;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 5px;
+}
+
+/* CARD PRINCIPAL */
+
+.milhao__menu-card {
+  padding: 27px 25px;
+  border: 2px solid #668de2;
+  border-radius: 28px;
+  background: linear-gradient(160deg, #193383f2, #0c195cf5 55%, #060d38f8);
+  box-shadow:
+    0 15px 35px #0008,
+    inset 0 2px 8px #a9ceff33;
+}
+
+.milhao__boas-vindas {
+  margin: 0 0 12px;
+  color: #ffffff;
+  font-size: clamp(20px, 4vw, 25px);
+  font-weight: 900;
+  line-height: 1.3;
+}
+
+.milhao__descricao {
+  margin: 0 auto 25px;
+  max-width: 420px;
+  color: #d4e4ff;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* PRÊMIO DO MENU */
+
+.milhao__premio-inicial {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 25px;
+  padding: 18px 12px;
+  border: 3px solid #fff0a4;
+  border-radius: 22px;
+  color: #291700;
+  background: linear-gradient(180deg, #fff3b6, #ffcc48 45%, #f69a0b);
+  box-shadow:
+    inset 0 2px 0 #fff9df,
+    0 5px 16px #0007;
+}
+
+.milhao__premio-inicial small {
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.milhao__premio-inicial strong {
+  font-size: clamp(29px, 7vw, 43px);
+  font-weight: 950;
+}
+
+.milhao__premio-inicial span {
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* BOTÕES DO MENU */
+
+.milhao__jogar {
+  width: 100%;
+  min-height: 62px;
+  padding: 14px;
+  border: 2px solid #fff4ac;
+  border-radius: 40px;
+  color: #291700;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 22px;
+  font-weight: 950;
+  background: linear-gradient(180deg, #ffea85, #ffc52d 50%, #ff9900);
+  box-shadow:
+    inset 0 3px 4px #fff9d1,
+    0 6px 0 #a55300,
+    0 10px 18px #0007;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    filter 0.2s;
+}
+
+.milhao__jogar:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.08);
+}
+
+.milhao__regras-botao {
+  width: 100%;
+  margin-top: 23px;
+  padding: 13px;
+  border: 2px solid #a9c9ff;
+  border-radius: 30px;
+  color: #ffffff;
+  background: #1b327d;
+  font-size: 15px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.milhao__regras-botao:hover {
+  background: #2a499e;
+}
+
+/* REGRAS */
+
+.milhao__regras {
+  margin-top: 22px;
+  padding: 24px;
+  border: 1px solid #8eb5ff;
+  border-radius: 22px;
+  text-align: left;
+  color: #e5eeff;
+  background: #091747f5;
+  box-shadow: 0 8px 20px #0006;
+}
+
+.milhao__regras h2 {
+  margin: 0 0 18px;
+  color: #ffe08a;
+  font-size: 22px;
+}
+
+.milhao__regras h3 {
+  margin-top: 24px;
+  color: #ffdf80;
+  font-size: 18px;
+}
+
+.milhao__regras p {
+  margin: 12px 0;
+  color: #e5eeff;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+/* RODAPÉ DO MENU */
+
+.milhao__menu-rodape {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.milhao__menu-rodape span {
+  color: #bcd3ff;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.milhao__voltar-site {
+  margin-top: 23px;
+  padding: 11px 22px;
+  border: 1px solid #94b6ee;
+  border-radius: 30px;
+  color: #ffffff;
+  background: #16276a;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+/* BOTÃO VOLTAR AO MENU NO RESULTADO */
+
+.milhao__feedback .milhao__resultado-menu {
+  display: block;
+  margin: 15px auto 0;
+  border: 1px solid #a9caff;
+  color: #ffffff;
+  background: #20377e;
+}
+
+/* CELULAR */
+
+@media (max-width: 480px) {
+  .milhao--menu {
+    padding: 25px 12px;
+  }
+
+  .milhao__trofeu {
+    font-size: 70px;
+  }
+
+  .milhao__titulo-inicial {
+    font-size: 42px;
+  }
+
+  .milhao__subtitulo {
+    font-size: 12px;
+    letter-spacing: 3px;
+  }
+
+  .milhao__menu-card {
+    padding: 23px 16px;
+  }
+
+  .milhao__descricao {
+    font-size: 14px;
+  }
+
+  .milhao__jogar {
+    min-height: 56px;
+    font-size: 19px;
+  }
+
+  .milhao__menu-rodape {
+    gap: 10px;
+  }
+
+  .milhao__menu-rodape span {
+    font-size: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .milhao__menu,
+  .milhao__trofeu {
+    animation: none;
+  }
+}
+
+/* ==========================================
+   RANKING — SHOW DO MILHÃO
+========================================== */
+
+.milhao__ranking {
+  max-width: 700px;
+  margin: 35px auto;
+  text-align: center;
+}
+
+.milhao__ranking-cabecalho {
+  margin-bottom: 30px;
+}
+
+.milhao__ranking-trofeu {
+  font-size: 75px;
+  filter: drop-shadow(0 0 20px #ffc93370);
+}
+
+.milhao__ranking-cabecalho h1 {
+  margin: 12px 0;
+  color: #ffe078;
+  font-size: clamp(28px, 5vw, 42px);
+  font-weight: 900;
+}
+
+.milhao__ranking-cabecalho p {
+  color: #c9ddff;
+  font-size: 15px;
+}
+
+.milhao__ranking-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.milhao__ranking-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 17px 20px;
+  border: 1px solid #6087d5;
+  border-radius: 17px;
+  background: linear-gradient(135deg, #1c397f, #091544);
+  box-shadow: 0 5px 10px #0005;
+}
+
+.milhao__ranking-destaque {
+  border-color: #f2d47d;
+  background: linear-gradient(135deg, #304a90, #10205d);
+}
+
+.milhao__ranking-posicao {
+  min-width: 45px;
+  color: #ffdb72;
+  font-size: 27px;
+  font-weight: 900;
+}
+
+.milhao__ranking-dados {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  min-width: 0;
+}
+
+.milhao__ranking-dados strong {
+  color: #fff;
+  font-size: 18px;
+  overflow-wrap: anywhere;
+  text-align: left;
+}
+
+.milhao__ranking-dados span {
+  color: #bad1ff;
+  font-size: 13px;
+}
+
+.milhao__ranking-valor {
+  color: #ffe078;
+  font-size: 19px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.milhao__ranking-aviso,
+.milhao__ranking-vazio {
+  padding: 30px 15px;
+  color: #fff;
+  font-size: 17px;
+}
+
+.milhao__ranking-vazio button,
+.milhao__ranking-atualizar,
+.milhao__ranking-voltar {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  margin: 22px auto 0;
+  padding: 14px;
+  border: 2px solid #b6d2ff;
+  border-radius: 30px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 900;
+  background: #203c86;
+  cursor: pointer;
+}
+
+.milhao__ranking-atualizar:hover,
+.milhao__ranking-voltar:hover {
+  filter: brightness(1.2);
+}
+
+.milhao__ranking-voltar {
+  border-color: #ffe08a;
+  color: #281700;
+  background: linear-gradient(#ffe68b, #f9ae25);
+}
+
+@media (max-width: 480px) {
+  .milhao__ranking {
+    margin: 24px auto;
+  }
+
+  .milhao__ranking-item {
+    gap: 9px;
+    padding: 14px 10px;
+  }
+
+  .milhao__ranking-posicao {
+    min-width: 33px;
+    font-size: 22px;
+  }
+
+  .milhao__ranking-dados strong {
+    font-size: 15px;
+  }
+
+  .milhao__ranking-valor {
+    font-size: 14px;
+  }
+
+  .milhao__ranking-trofeu {
+    font-size: 60px;
+  }
+}
+
+
+/* ==========================================
+   BOTÃO DO RANKING NA TELA INICIAL
+========================================== */
+
+.milhao__ver-ranking {
+  display: block;
+  width: 100%;
+  min-height: 54px;
+  margin-top: 22px;
+  padding: 13px;
+
+  border: 2px solid #ffe18a;
+  border-radius: 35px;
+
+  color: #ffe18a;
+  background: linear-gradient(
+    180deg,
+    #294891,
+    #0b1a56
+  );
+
+  font-size: 17px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.milhao__ver-ranking:hover {
+  filter: brightness(1.2);
+}
+
+/* ==========================================
+   FORMULÁRIO PARA SALVAR PONTUAÇÃO
+========================================== */
+
+.milhao__salvar-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+
+  margin: 22px 0;
+  padding: 22px 15px;
+
+  border: 1px solid #7399ec;
+  border-radius: 18px;
+
+  background: #0a164b;
+}
+
+.milhao__salvar-form h3 {
+  margin: 0;
+  color: #ffdf79;
+  font-size: 21px;
+}
+
+.milhao__salvar-form p {
+  margin: 0 0 6px;
+  color: #dbe7ff;
+}
+
+.milhao__salvar-form input {
+  width: 100%;
+  max-width: 340px;
+  min-height: 48px;
+  padding: 12px 17px;
+
+  border: 2px solid #91b8ff;
+  border-radius: 13px;
+
+  outline: none;
+  color: #fff;
+  background: #172b70;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
+
+.milhao__salvar-form input::placeholder {
+  color: #aec7f4;
+}
+
+.milhao__salvar-form input:focus {
+  border-color: #ffe18a;
+}
+
+.milhao__salvar-form button {
+  width: 100%;
+  max-width: 340px;
+  min-height: 48px;
+  padding: 12px;
+
+  border-radius: 30px;
+  color: #251500;
+
+  font-size: 15px;
+  font-weight: 900;
+
+  background: linear-gradient(
+    #ffe994,
+    #ffb429
+  );
+
+  cursor: pointer;
+}
+
+.milhao__salvar-form button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.milhao__erro-ranking {
+  color: #ffabab !important;
+  font-weight: 700;
+}
+
+.milhao__salvo-sucesso {
+  margin: 20px 0;
+  padding: 15px;
+
+  border: 1px solid #6cf2ab;
+  border-radius: 14px;
+
+  color: #a0ffce;
+  background: #07452f;
+
+  font-weight: 900;
+}
+
+.milhao__feedback .milhao__ir-ranking {
+  display: block;
+  margin: 15px auto;
+  padding: 12px 25px;
+
+  border: 1px solid #ffdf79;
+  border-radius: 30px;
+
+  color: #ffdf79;
+  background: #213979;
+
+  font-size: 15px;
+  font-weight: 900;
+  cursor: pointer;
+}
