@@ -8,31 +8,60 @@ import {
 
 const DURACAO_PARTIDA_MS = 30 * 60 * 1000;
 
+const ORIGENS_PERMITIDAS = [
+  "http://localhost:5173",
+  "http://127.0.0.1:5173",
+  "https://show-do-milhao-geracao-z.vercel.app",
+  "https://rafapereira0224-alt.github.io",
+];
+
+function criarHeadersCORS(request) {
+  const origem = request.headers.get("origin");
+
+  const headers = new Headers({
+    "Content-Type": "application/json",
+    Vary: "Origin",
+  });
+
+  if (ORIGENS_PERMITIDAS.includes(origem)) {
+    headers.set("Access-Control-Allow-Origin", origem);
+    headers.set("Access-Control-Allow-Methods", "POST, OPTIONS");
+    headers.set("Access-Control-Allow-Headers", "Authorization, Content-Type");
+  }
+
+  return headers;
+}
+
+export function OPTIONS(request) {
+  return new Response(null, {
+    status: 204,
+    headers: criarHeadersCORS(request),
+  });
+}
+
 export async function POST(request) {
-  // 1. Verifica se o jogador está autenticado
+  const headers = criarHeadersCORS(request);
+
   let usuarioId;
 
   try {
     usuarioId = await verificarTokenJogador(request);
-  } catch (erro) {
+  } catch {
     return Response.json(
       {
         sucesso: false,
         mensagem: "Você precisa estar autenticado para jogar.",
       },
-      { status: 401 }
+      { status: 401, headers }
     );
   }
 
   try {
-    // 2. Prepara o Firestore
     const db = obterFirestoreAdmin();
 
-    // 3. Cria o identificador da partida
     const partidaId = randomUUID();
     const agora = Date.now();
 
-    // 4. Salva a partida vinculada ao jogador
     await db.collection("partidas").doc(partidaId).set({
       usuarioId,
       status: "iniciada",
@@ -43,13 +72,15 @@ export async function POST(request) {
       expiraEm: new Date(agora + DURACAO_PARTIDA_MS),
     });
 
-    // 5. Retorna somente as informações necessárias
-    return Response.json({
-      sucesso: true,
-      partidaId,
-      rodada: 1,
-      mensagem: "Partida iniciada com sucesso!",
-    });
+    return Response.json(
+      {
+        sucesso: true,
+        partidaId,
+        rodada: 1,
+        mensagem: "Partida iniciada com sucesso!",
+      },
+      { headers }
+    );
   } catch (erro) {
     console.error("Erro ao iniciar partida:", erro);
 
@@ -58,7 +89,7 @@ export async function POST(request) {
         sucesso: false,
         mensagem: "Não foi possível iniciar a partida.",
       },
-      { status: 500 }
+      { status: 500, headers }
     );
   }
 }
