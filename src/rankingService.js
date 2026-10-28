@@ -121,3 +121,4 @@ export async function buscarRanking() {
 
   return jogadores;
 }
+
