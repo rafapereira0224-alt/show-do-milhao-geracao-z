@@ -1423,3 +1423,352 @@ body {
   font-weight: 900;
   cursor: pointer;
 }
+
+
+/* ==========================================
+   SHOW DO MILHÃO — EFEITOS CINEMATOGRÁFICOS
+   ========================================== */
+
+/* Mantém o conteúdo acima das luzes e do dinheiro */
+
+.milhao__painel {
+  position: relative;
+  z-index: 2;
+}
+
+/* ==========================================
+   LUZES VERDES E VERMELHAS
+   ========================================== */
+
+.milhao__luz-resultado {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.milhao--acertou .milhao__luz-resultado {
+  background:
+    radial-gradient(
+      ellipse at center,
+      transparent 25%,
+      rgba(0, 255, 106, 0.3) 100%
+    );
+
+  animation: milhaoLuzVerde 1.2s ease-out forwards;
+}
+
+.milhao--perdeu .milhao__luz-resultado {
+  background:
+    radial-gradient(
+      ellipse at center,
+      transparent 20%,
+      rgba(255, 30, 55, 0.4) 100%
+    );
+
+  animation: milhaoLuzVermelha 1.5s ease-out forwards;
+}
+
+.milhao--ganhou .milhao__luz-resultado {
+  background:
+    radial-gradient(
+      ellipse at center,
+      transparent 15%,
+      rgba(255, 210, 50, 0.4) 100%
+    );
+
+  animation: milhaoLuzDourada 2s ease-out forwards;
+}
+
+@keyframes milhaoLuzVerde {
+  0% {
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 0.9;
+  }
+
+  65% {
+    opacity: 0.35;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes milhaoLuzVermelha {
+  0% {
+    opacity: 0;
+  }
+
+  30% {
+    opacity: 0.9;
+  }
+
+  70% {
+    opacity: 0.4;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes milhaoLuzDourada {
+  0% {
+    opacity: 0;
+  }
+
+  40% {
+    opacity: 0.9;
+  }
+
+  100% {
+    opacity: 0.25;
+  }
+}
+
+/* ==========================================
+   SUSPENSE
+   ========================================== */
+
+.milhao--suspense .milhao__pergunta h2 {
+  text-shadow:
+    0 0 12px rgba(255, 190, 70, 0.5),
+    0 2px 4px #000;
+}
+
+.milhao__suspense-aviso {
+  margin: 0 auto 22px;
+  padding: 20px;
+  max-width: 520px;
+
+  border: 2px solid #ffcb68;
+  border-radius: 20px;
+
+  text-align: center;
+  color: #fff;
+
+  background:
+    linear-gradient(135deg, #392051, #101b60);
+
+  box-shadow:
+    0 0 20px rgba(255, 184, 52, 0.22),
+    inset 0 0 15px rgba(255, 255, 255, 0.05);
+
+  animation: milhaoSuspenseEntrada 0.35s ease-out;
+}
+
+.milhao__suspense-aviso strong {
+  display: block;
+  margin-top: 8px;
+  color: #ffe391;
+  font-size: clamp(17px, 3vw, 22px);
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.milhao__suspense-aviso p {
+  margin: 9px 0 0;
+  color: #e6dcff;
+  font-size: 14px;
+}
+
+.milhao__coracao {
+  display: inline-block;
+  font-size: 42px;
+  transform-origin: center;
+  animation: milhaoBatimento 0.85s ease-in-out infinite;
+}
+
+@keyframes milhaoSuspenseEntrada {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes milhaoBatimento {
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  15% {
+    transform: scale(1.2);
+  }
+
+  30% {
+    transform: scale(1);
+  }
+
+  45% {
+    transform: scale(1.12);
+  }
+
+  65% {
+    transform: scale(1);
+  }
+}
+
+/* Alternativa selecionada durante o suspense */
+
+.milhao__opcao--suspense,
+.milhao__opcao--suspense:disabled {
+  opacity: 1 !important;
+
+  border-color: #ffdf87 !important;
+
+  background:
+    linear-gradient(180deg, #82601f, #453066) !important;
+
+  box-shadow:
+    0 0 17px rgba(255, 209, 91, 0.45) !important;
+
+  animation: milhaoOpcaoSuspense 1s ease-in-out infinite;
+}
+
+@keyframes milhaoOpcaoSuspense {
+  0%, 100% {
+    filter: brightness(1);
+  }
+
+  50% {
+    filter: brightness(1.2);
+  }
+}
+
+/* ==========================================
+   CHUVA DE DINHEIRO
+   ========================================== */
+
+.milhao__chuva-dinheiro {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.milhao__nota {
+  position: absolute;
+  top: -15vh;
+
+  display: block;
+  font-size: clamp(23px, 4vw, 39px);
+  line-height: 1;
+
+  opacity: 0;
+
+  filter:
+    drop-shadow(0 4px 4px rgba(0, 0, 0, 0.3));
+
+  animation: milhaoNotaCaindo 3s linear both;
+}
+
+@keyframes milhaoNotaCaindo {
+  0% {
+    transform:
+      translate3d(0, -10vh, 0)
+      rotate(0deg);
+
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 1;
+  }
+
+  100% {
+    transform:
+      translate3d(55px, 120vh, 0)
+      rotate(var(--rotacao-nota, 360deg));
+
+    opacity: 0;
+  }
+}
+
+/* Vitória: notas coloridas e brilhantes */
+
+.milhao__chuva-dinheiro--ganhou .milhao__nota {
+  filter:
+    drop-shadow(0 0 9px rgba(255, 221, 65, 0.8));
+}
+
+/* Derrota: notas desaparecem mais rapidamente */
+
+.milhao__chuva-dinheiro--perdeu .milhao__nota {
+  opacity: 0.65;
+  filter: grayscale(0.7);
+  animation-name: milhaoNotaPerdida;
+}
+
+@keyframes milhaoNotaPerdida {
+  0% {
+    transform:
+      translate3d(0, -10vh, 0)
+      rotate(0deg);
+
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.65;
+  }
+
+  45% {
+    opacity: 0.4;
+  }
+
+  100% {
+    transform:
+      translate3d(40px, 110vh, 0)
+      rotate(var(--rotacao-nota, 360deg));
+
+    opacity: 0;
+  }
+}
+
+/* ==========================================
+   CRONÔMETRO DURANTE O SUSPENSE
+   ========================================== */
+
+.milhao--suspense .milhao__relogio {
+  border-color: #ffca65;
+
+  box-shadow:
+    0 0 18px rgba(255, 186, 65, 0.55),
+    inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* ==========================================
+   ACESSIBILIDADE
+   ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .milhao__luz-resultado {
+    display: none !important;
+  }
+
+  .milhao__chuva-dinheiro {
+    display: none !important;
+  }
+
+  .milhao__coracao,
+  .milhao__opcao--suspense,
+  .milhao__suspense-aviso {
+    animation: none !important;
+  }
+}
