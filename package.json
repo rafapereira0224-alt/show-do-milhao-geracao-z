@@ -13,6 +13,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "firebase": "^13.1.0",
     "firebase-admin": "13.10.0",
     "react": "^19.3.1",
